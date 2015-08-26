@@ -1,0 +1,34 @@
+{
+  "name": "robot-api",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "tue-robotics/robot-api",
+  "author": {
+    "name": "Ramon Wijnands",
+    "email": "rayman747@hotmail.com",
+    "url": "https://github.com/Rayman"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "dist/"
+  ],
+  "scripts": {
+    "clean": "rimraf dist/",
+    "lint": "xo --space",
+    "check": "npm run lint -s && dependency-check package.json --entry lib",
+    "watch": "watchify lib/browser.js -o static/bundle.js -dv",
+    "prebuild": "npm run check -s && npm run clean -s",
+    "build": "mkdirp dist/ && browserify lib/browser.js > dist/bundle.js",
+    "prepublish": "npm run build -s",
+    "patch": "npm version patch && npm publish",
+    "minor": "npm version minor && npm publish",
+    "major": "npm version major && npm publish",
+    "postpublish": "git push origin master --follow-tags"
+  },
+  "devDependencies": {
+    "dependency-check": "^2.5.0",
+    "mkdirp": "^0.5.1",
+    "xo": "^0.7.1"
+  }
+}
