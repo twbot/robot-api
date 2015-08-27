@@ -1,6 +1,6 @@
 {
   "name": "robot-api",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "repository": "tue-robotics/robot-api",
   "author": {
@@ -27,7 +27,9 @@
     "postpublish": "git push origin master --follow-tags"
   },
   "xo": {
-    "ignores": ["dist/**"]
+    "ignores": [
+      "dist/**"
+    ]
   },
   "devDependencies": {
     "rimraf": "^2.4.2",
