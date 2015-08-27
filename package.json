@@ -16,7 +16,7 @@
   "scripts": {
     "clean": "rimraf dist/",
     "lint": "xo --space lib/",
-    "check": "npm run lint -s && dependency-check package.json --entry lib",
+    "check": "dependency-check package.json --entry lib",
     "watch": "mkdirp dist/ && watchify lib/browser.js -s API -o dist/bundle.js -v",
     "prebuild": "npm run check -s && npm run clean -s",
     "build": "mkdirp dist/ && browserify lib/browser.js -s API -o dist/bundle.js",
