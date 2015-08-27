@@ -19,7 +19,7 @@
     "check": "npm run lint -s && dependency-check package.json --entry lib",
     "watch": "watchify lib/browser.js -o static/bundle.js -dv",
     "prebuild": "npm run check -s && npm run clean -s",
-    "build": "mkdirp dist/ && browserify lib/browser.js > dist/bundle.js",
+    "build": "mkdirp dist/ && browserify lib/browser.js -s API -o dist/bundle.js",
     "prepublish": "npm run build -s",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
