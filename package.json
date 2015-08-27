@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "clean": "rimraf dist/",
-    "lint": "xo --space",
+    "lint": "xo --space lib/",
     "check": "npm run lint -s && dependency-check package.json --entry lib",
-    "watch": "watchify lib/browser.js -o static/bundle.js -dv",
+    "watch": "mkdirp dist/ && watchify lib/browser.js -s API -o dist/bundle.js -v",
     "prebuild": "npm run check -s && npm run clean -s",
     "build": "mkdirp dist/ && browserify lib/browser.js -s API -o dist/bundle.js",
     "prepublish": "npm run build -s",
@@ -26,10 +26,15 @@
     "major": "npm version major && npm publish",
     "postpublish": "git push origin master --follow-tags"
   },
+  "xo": {
+    "ignores": ["dist/**"]
+  },
   "devDependencies": {
+    "rimraf": "^2.4.2",
+    "xo": "^0.7.1",
     "dependency-check": "^2.5.0",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.4.2",
-    "xo": "^0.7.1"
+    "browserify": "^11.0.1",
+    "watchify": "^3.3.1"
   }
 }
