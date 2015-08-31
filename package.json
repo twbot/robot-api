@@ -13,6 +13,18 @@
     "lib/",
     "dist/"
   ],
+  "browser": {
+    "eventemitter2": "./lib/shims/eventemitter2.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "lodash": "global:_",
+    "roslib": "global:ROSLIB"
+  },
   "scripts": {
     "clean": "rimraf dist/",
     "lint": "xo --space lib/",
@@ -32,11 +44,17 @@
     ]
   },
   "devDependencies": {
-    "rimraf": "^2.4.2",
-    "xo": "^0.7.1",
+    "browserify": "^11.0.1",
+    "browserify-shim": "^3.8.10",
     "dependency-check": "^2.5.0",
     "mkdirp": "^0.5.1",
-    "browserify": "^11.0.1",
-    "watchify": "^3.3.1"
+    "rimraf": "^2.4.2",
+    "watchify": "^3.3.1",
+    "xo": "^0.7.1"
+  },
+  "dependencies": {
+    "eventemitter2": "^0.4.14",
+    "lodash": "^3.10.1",
+    "roslib": "^0.15.0"
   }
 }
