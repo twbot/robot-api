@@ -1,6 +1,6 @@
 {
   "name": "robot-api",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": "tue-robotics/robot-api",
   "author": {
@@ -32,7 +32,7 @@
     "watch": "mkdirp dist/ && watchify lib/browser.js -s API -o dist/bundle.js -vd",
     "prebuild": "npm run check -s && npm run clean -s",
     "build": "mkdirp dist/ && browserify lib/browser.js -s API -o dist/bundle.js -d",
-    "prepublish": "npm run build -s",
+    "version": "npm run build && git add -A dist",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
