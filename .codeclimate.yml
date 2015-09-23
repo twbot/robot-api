@@ -3,3 +3,8 @@ engines:
     enabled: true
   fixme:
     enabled: true
+ratings:
+   paths:
+   - lib/**
+exclude_paths:
+- "dist/*"
