@@ -40,7 +40,7 @@
   },
   "scripts": {
     "clean": "rimraf dist/",
-    "lint": "xo --space lib/",
+    "lint": "xo",
     "check": "dependency-check package.json --entry lib",
     "watch": "mkdirp dist/ && watchify lib/index.js -s API -o dist/bundle.js -vd",
     "prebuild": "npm run check -s && npm run clean -s",
@@ -53,8 +53,13 @@
   },
   "xo": {
     "ignores": [
-      "dist/**"
-    ]
+      "dist/**",
+      "lib/hardware.js",
+      "lib/head.js",
+      "lib/base.js",
+      "lib/ed.js"
+    ],
+    "space": true
   },
   "devDependencies": {
     "babelify": "^6.3.0",
@@ -64,7 +69,7 @@
     "mkdirp": "^0.5.1",
     "rimraf": "^2.4.2",
     "watchify": "^3.3.1",
-    "xo": "^0.7.1"
+    "xo": "^0.9.0"
   },
   "dependencies": {
     "eventemitter2": "^0.4.14",
