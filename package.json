@@ -56,10 +56,10 @@
       "dist/**",
       "lib/hardware.js",
       "lib/head.js",
-      "lib/base.js",
       "lib/ed.js"
     ],
-    "space": true
+    "space": true,
+    "esnext": true
   },
   "devDependencies": {
     "babelify": "^6.3.0",
