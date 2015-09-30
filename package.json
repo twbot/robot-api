@@ -55,7 +55,6 @@
     "ignores": [
       "dist/**",
       "lib/hardware.js",
-      "lib/head.js",
       "lib/ed.js"
     ],
     "space": true,
