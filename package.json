@@ -27,6 +27,7 @@
             "regenerator"
           ],
           "optional": [
+            "es7.classProperties",
             "validation.undeclaredVariableCheck"
           ]
         }
@@ -54,7 +55,6 @@
   "xo": {
     "ignores": [
       "dist/**",
-      "lib/hardware.js",
       "lib/ed.js"
     ],
     "space": true,
