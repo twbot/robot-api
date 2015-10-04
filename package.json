@@ -58,7 +58,17 @@
       "lib/ed.js"
     ],
     "space": true,
-    "esnext": true
+    "esnext": true,
+    "rules": {
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Topic"
+          ]
+        }
+      ]
+    }
   },
   "devDependencies": {
     "babelify": "^6.3.0",
