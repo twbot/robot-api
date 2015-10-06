@@ -18,6 +18,12 @@
   },
   "browserify": {
     "transform": [
+      [
+        "babelify",
+        {
+          "sourceMapRelative": "."
+        }
+      ],
       "browserify-shim"
     ]
   },
@@ -29,9 +35,9 @@
     "clean": "rimraf dist/",
     "lint": "xo",
     "check": "dependency-check package.json --entry lib",
-    "watch": "mkdirp dist/ && watchify lib/browser.js -s API -o dist/bundle.js -vd",
+    "watch": "mkdirp dist/ && watchify lib/index.js -s API -o dist/bundle.js -vd",
     "prebuild": "npm run check -s && npm run clean -s",
-    "build": "mkdirp dist/ && browserify lib/browser.js -s API -o dist/bundle.js -d",
+    "build": "mkdirp dist/ && browserify lib/index.js -s API -o dist/bundle.js -d",
     "version": "npm run build && git add -A dist",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
@@ -41,14 +47,23 @@
   "xo": {
     "ignores": [
       "dist/**",
-      "lib/hardware.js",
-      "lib/head.js",
-      "lib/base.js",
       "lib/ed.js"
     ],
-    "space": true
+    "space": true,
+    "esnext": true,
+    "rules": {
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Topic"
+          ]
+        }
+      ]
+    }
   },
   "devDependencies": {
+    "babelify": "^6.3.0",
     "browserify": "^11.0.1",
     "browserify-shim": "^3.8.10",
     "dependency-check": "^2.5.0",
