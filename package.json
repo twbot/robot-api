@@ -8,7 +8,7 @@
     "email": "rayman747@hotmail.com",
     "url": "https://github.com/Rayman"
   },
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
   "files": [
     "lib/",
     "dist/"
@@ -35,9 +35,12 @@
     "clean": "rimraf dist/",
     "lint": "xo",
     "check": "dependency-check package.json --entry lib",
-    "watch": "mkdirp dist/ && watchify lib/index.js -s API -o dist/bundle.js -vd",
-    "prebuild": "npm run check -s && npm run clean -s",
-    "build": "mkdirp dist/ && browserify lib/index.js -s API -o dist/bundle.js -d",
+    "prebuild": "npm run check && npm run clean",
+    "build": "npm run build_cjs && npm run build_global",
+    "build_cjs": "babel lib/ --out-dir dist/cjs/ --source-maps --modules common",
+    "watch_cjs": "babel lib/ --watch --out-dir dist/cjs/ --source-maps --modules common",
+    "build_global": "mkdirp dist/ && browserify lib/index.js -s API -d | exorcist dist/bundle.js.map > dist/bundle.js",
+    "watch_global": "mkdirp dist/ && watchify lib/index.js -s API -o dist/bundle.js -vd",
     "version": "npm run build && git add -A dist",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
@@ -67,6 +70,7 @@
     "browserify": "^11.0.1",
     "browserify-shim": "^3.8.10",
     "dependency-check": "^2.5.0",
+    "exorcist": "^0.4.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.4.2",
     "watchify": "^3.3.1",

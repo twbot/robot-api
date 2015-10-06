@@ -1,4 +1,8 @@
 node_modules
 bower_components
+
+# only commit the global bundle for bower
+dist/cjs/
+
 npm-debug.log*
 
