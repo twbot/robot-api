@@ -34,7 +34,7 @@
   "scripts": {
     "clean": "rimraf dist/",
     "lint": "xo",
-    "check": "dependency-check package.json --entry lib",
+    "check": "npm run lint && dependency-check package.json --entry lib",
     "prebuild": "npm run check && npm run clean",
     "build": "npm run build_cjs && npm run build_global",
     "build_cjs": "babel lib/ --out-dir dist/cjs/ --source-maps --modules common",
