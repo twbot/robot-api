@@ -50,7 +50,7 @@
   "xo": {
     "ignores": [
       "dist/**",
-      "lib/ed.js"
+      "lib/graveyard/*"
     ],
     "space": true,
     "esnext": true,
