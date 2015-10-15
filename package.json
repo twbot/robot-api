@@ -59,7 +59,8 @@
         2,
         {
           "capIsNewExceptions": [
-            "Topic"
+            "Topic",
+            "Service"
           ]
         }
       ]
