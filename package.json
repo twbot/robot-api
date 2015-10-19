@@ -55,6 +55,12 @@
     "space": true,
     "esnext": true,
     "rules": {
+      "no-unused-expressions": [
+        2,
+        {
+          "allowShortCircuit": true
+        }
+      ],
       "new-cap": [
         2,
         {
