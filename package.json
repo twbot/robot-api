@@ -28,7 +28,6 @@
     ]
   },
   "browserify-shim": {
-    "lodash": "global:_",
     "roslib": "global:ROSLIB"
   },
   "scripts": {
