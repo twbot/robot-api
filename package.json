@@ -76,6 +76,7 @@
     "babelify": "^6.3.0",
     "browserify": "^11.0.1",
     "browserify-shim": "^3.8.10",
+    "cz-conventional-changelog": "^1.1.4",
     "dependency-check": "^2.5.0",
     "exorcist": "^0.4.0",
     "mkdirp": "^0.5.1",
@@ -87,5 +88,10 @@
     "eventemitter2": "^0.4.14",
     "lodash": "^3.10.1",
     "roslib": "^0.17.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
