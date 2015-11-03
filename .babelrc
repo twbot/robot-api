@@ -1,11 +1,8 @@
 {
-  "optional": [
-    "runtime",
-    "es7.classProperties",
-    "validation.undeclaredVariableCheck"
-  ],
-  "blacklist": [
-    "regenerator"
-  ],
-  "loose": "all"
+  "presets": ["es2015"],
+  "plugins": [
+    "transform-class-properties",
+    "transform-runtime",
+    ["transform-es2015-for-of", {"loose": true}]
+  ]
 }
