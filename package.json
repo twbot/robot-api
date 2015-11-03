@@ -32,7 +32,7 @@
   },
   "scripts": {
     "clean": "rimraf dist/",
-    "lint": "xo",
+    "lint": "xo --fix",
     "check_deps": "dependency-check .",
     "prebuild": "npm run lint && npm run clean",
     "build": "npm run build_cjs && npm run build_global",
@@ -87,7 +87,7 @@
     "mkdirp": "^0.5.1",
     "rimraf": "^2.4.2",
     "watchify": "^3.3.1",
-    "xo": "^0.9.0"
+    "xo": "^0.10.1"
   },
   "dependencies": {
     "eventemitter2": "^0.4.14",
