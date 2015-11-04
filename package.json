@@ -48,6 +48,9 @@
     "postpublish": "git push && git push --tags"
   },
   "xo": {
+    "envs": [
+      "browser"
+    ],
     "ignores": [
       "dist/**",
       "lib/graveyard/*"

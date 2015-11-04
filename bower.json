@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "eventemitter2": "~0.4.14",
-    "roslib": "~0.17.0"
+    "roslib": "~0.17.0",
+    "bson": "rayman/js-bson#add-as-bower-package"
   }
 }
