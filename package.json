@@ -72,8 +72,9 @@
         2,
         {
           "capIsNewExceptions": [
-            "Topic",
-            "Service"
+            "ActionClient",
+            "Service",
+            "Topic"
           ]
         }
       ]
