@@ -1,16 +1,16 @@
 /* eslint no-unused-expressions: 0 */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
+sinonChai && chai.use(sinonChai);
 chai.should();
-chai.use(sinonChai);
 
 import {stub} from 'sinon';
 
-import Base from '../lib/base';
-import Ed from '../lib/ed';
-import Hardware from '../lib/hardware';
-import Head from '../lib/head';
-import Robot from '../lib/robot';
+import {Base} from '..';
+import {Ed} from '..';
+import {Hardware} from '..';
+import {Head} from '..';
+import {Robot} from '..';
 
 import {Ros} from 'roslib';
 

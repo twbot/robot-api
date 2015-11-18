@@ -1,12 +1,12 @@
 /* eslint no-unused-expressions: 0 */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
+sinonChai && chai.use(sinonChai);
 chai.should();
-chai.use(sinonChai);
 
 import {stub} from 'sinon';
 
-import Base from '../lib/base';
+import {Base} from '..';
 
 import {Ros} from 'roslib';
 
