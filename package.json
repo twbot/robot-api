@@ -31,6 +31,7 @@
     "roslib": "global:ROSLIB"
   },
   "scripts": {
+    "postinstall": "bower install",
     "clean": "rimraf dist/",
     "lint": "xo --fix",
     "deps": "npm run deps:missing && npm run deps:extra",
@@ -96,6 +97,7 @@
     "babel-plugin-transform-strict-mode": "^6.1.4",
     "babel-preset-es2015": "^6.1.4",
     "babelify": "^7.2.0",
+    "bower": "^1.6.5",
     "browserify": "^12.0.1",
     "browserify-shim": "^3.8.11",
     "chai": "^3.4.1",

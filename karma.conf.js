@@ -13,8 +13,9 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/eventemitter2/lib/eventemitter2.js',
-      'node_modules/roslib/build/roslib.js',
+      'bower_components/eventemitter2/lib/eventemitter2.js',
+      'bower_components/bson/browser_build/bson.js',
+      'bower_components/roslib/build/roslib.js',
       'dist/bundle.js',
       'node_modules/chai/chai.js',
       'node_modules/sinon-chai/lib/sinon-chai.js',
