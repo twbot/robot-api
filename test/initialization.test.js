@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions: 0 */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
-sinonChai && chai.use(sinonChai);
+chai.use(sinonChai);
 chai.should();
 
 import {stub} from 'sinon';
