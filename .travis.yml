@@ -1,5 +1,19 @@
+sudo: false
 language: node_js
 node_js:
-  - '0.10'
   - '0.12'
-  - 'iojs'
+  - '4'
+  - 'stable'
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+    - libcairo2-dev
+    - libgif-dev
+    - libjpeg8-dev
+    - libpango1.0-dev
+
+before_script:
+  - npm run build
