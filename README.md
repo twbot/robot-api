@@ -1,4 +1,4 @@
-# robot-api [![NPM version][npm-image]][npm-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-image-dev]][daviddm-url-dev]
+# robot-api [![NPM version][npm-image]][npm-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Test Coverage][coverage-image]][coverage-url] [![Dependency Status][daviddm-image]][daviddm-url] [![devDependency Status][daviddm-image-dev]][daviddm-url-dev]
 
 Node.js API to interact with service robots. Also runs in the browser with browserify and bower.
 
@@ -13,6 +13,8 @@ Node.js API to interact with service robots. Also runs in the browser with brows
 
 [codeclimate-image]: https://codeclimate.com/github/tue-robotics/robot-api/badges/gpa.svg
 [codeclimate-url]: https://codeclimate.com/github/tue-robotics/robot-api
+[coverage-image]: https://codeclimate.com/github/tue-robotics/robot-api/badges/coverage.svg
+[coverage-url]: https://codeclimate.com/github/tue-robotics/robot-api/coverage
 
 [daviddm-image]: https://david-dm.org/tue-robotics/robot-api.svg
 [daviddm-url]: https://david-dm.org/tue-robotics/robot-api
