@@ -6,7 +6,7 @@ window.require = function require(path) {
     case 'roslib':
       load = window.ROSLIB;
       break;
-    case '..':
+    case '../lib':
       load = window.API;
       break;
     case 'sinon-chai':

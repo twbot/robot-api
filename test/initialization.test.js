@@ -6,11 +6,11 @@ chai.should();
 
 import {stub} from 'sinon';
 
-import {Base} from '..';
-import {Ed} from '..';
-import {Hardware} from '..';
-import {Head} from '..';
-import {Robot} from '..';
+import {Base} from '../lib';
+import {Ed} from '../lib';
+import {Hardware} from '../lib';
+import {Head} from '../lib';
+import {Robot} from '../lib';
 
 import {Ros} from 'roslib';
 

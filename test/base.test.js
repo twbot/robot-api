@@ -6,7 +6,7 @@ chai.should();
 
 import {stub} from 'sinon';
 
-import {Base} from '..';
+import {Base} from '../lib';
 
 import {Ros} from 'roslib';
 
