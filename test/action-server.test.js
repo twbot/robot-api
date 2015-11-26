@@ -45,9 +45,9 @@ describe('ActionServer', () => {
     callOnConnection.restore();
   });
 
-  describe('ActionServer.doAction', () => {
+  describe('ActionServer.doEntityAction', () => {
     it('should send a service call', () => {
-      actionServer.doAction('pick-up', 'chair');
+      actionServer.doEntityAction('pick-up', 'chair');
 
       const expected = {action: 'pick-up', parameters: '{"entity":{"id":"chair"}}'};
 
