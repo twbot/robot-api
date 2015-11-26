@@ -20,7 +20,7 @@ module.exports = function (config) {
       'node_modules/chai/chai.js',
       'node_modules/sinon-chai/lib/sinon-chai.js',
       'node_modules/sinon/pkg/sinon.js',
-      'node_modules/core-js/client/library.js',
+      'bower_components/core.js/client/library.js',
       'test/require-shim.js',
       'test/**/*.test.js'
     ],
