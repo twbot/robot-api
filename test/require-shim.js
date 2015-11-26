@@ -15,7 +15,24 @@ window.require = function require(path) {
       };
       break;
     default:
-      load = window[path];
+      if (path.startsWith('babel-runtime/core-js/')) {
+        // search for core-js functions
+        path = 'babel-runtime/core-js/object/keys'.split('babel-runtime/core-js/')[1];
+        path = path.split('/');
+        var location = path[0];
+        var method = path[1];
+
+        location = location.charAt(0).toUpperCase() + location.slice(1);
+
+        if (window.core.hasOwnProperty(location) && window.core[location].hasOwnProperty(method)) {
+          load = window.core[location][method];
+        } else {
+          console.warn('core-js method not found', path);
+        }
+      } else {
+        // maybe there is a global with that name
+        load = window[path];
+      }
   }
 
   if (typeof load === 'undefined') {
