@@ -1,4 +1,5 @@
 /* eslint no-unused-expressions: 0 */
+/* eslint no-use-extend-native/no-use-extend-native: 0 */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
