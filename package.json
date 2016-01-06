@@ -32,7 +32,6 @@
     "base64-js": "global:base64js"
   },
   "scripts": {
-    "postinstall": "echo $NODE_ENV && bower install",
     "clean": "rimraf dist/",
     "lint": "xo --fix",
     "deps": "npm run deps:missing && npm run deps:extra",
@@ -48,7 +47,7 @@
     "watch_global": "mkdirp dist/ && watchify lib/index.js -s API -o dist/bundle.js -vd",
     "test": "npm run test_node && npm run test_browser",
     "test_node": "mocha test/**/*.test.js",
-    "test_browser": "karma start --single-run",
+    "test_browser": "bower update && karma start --single-run",
     "coverage": "babel-node node_modules/isparta/bin/isparta cover node_modules/mocha/bin/_mocha -- --reporter dot test/**/*.test.js",
     "version": "npm run build && git add -A dist",
     "patch": "npm version patch && npm publish",
