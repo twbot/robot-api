@@ -16,6 +16,7 @@ module.exports = function (config) {
       'bower_components/eventemitter2/lib/eventemitter2.js',
       'bower_components/bson/browser_build/bson.js',
       'bower_components/roslib/build/roslib.js',
+      'bower_components/base64-js/lib/b64.js',
       'dist/bundle.js',
       'node_modules/chai/chai.js',
       'node_modules/sinon-chai/lib/sinon-chai.js',
