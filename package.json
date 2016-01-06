@@ -124,7 +124,7 @@
     "base64-js": "1.0.1",
     "eventemitter2": "^0.4.14",
     "lodash": "^3.10.1",
-    "roslib": "^0.17.0"
+    "roslib": "RobotWebTools/roslibjs#f406f6a570a27747dc6a8fc5a3b68dd4a974f65d"
   },
   "config": {
     "commitizen": {
