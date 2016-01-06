@@ -866,6 +866,13 @@ var Hardware = (function (_EventEmitter) {
   }, {
     key: 'send_command',
     value: function send_command(part, command) {
+      if (!hardwareIds.hasOwnProperty(part)) {
+        throw new RangeError('Invalid part');
+      }
+      if (!commands.hasOwnProperty(command)) {
+        throw new RangeError('Invalid command');
+      }
+
       var i1 = hardwareIds[part];
       var i2 = commands[command];
       console.log('hardware command: %s %s (%i, %i)', command, part, i1, i2);
@@ -1056,7 +1063,7 @@ exports.default = Hardware;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./hardware-properties":4,"babel-runtime/core-js/get-iterator":11,"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/core-js/object/keys":18,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"lodash/function/debounce.js":105}],6:[function(require,module,exports){
+},{"./hardware-properties":4,"babel-runtime/core-js/get-iterator":11,"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/core-js/object/keys":18,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"lodash/function/debounce.js":103}],6:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1088,7 +1095,7 @@ var _eventemitter = require('eventemitter2');
 
 var _roslib = (typeof window !== "undefined" ? window['ROSLIB'] : typeof global !== "undefined" ? global['ROSLIB'] : null);
 
-var _base64Js = require('base64-js');
+var _base64Js = (typeof window !== "undefined" ? window['base64js'] : typeof global !== "undefined" ? global['base64js'] : null);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1201,13 +1208,17 @@ exports.default = Head;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"base64-js":102,"eventemitter2":9}],7:[function(require,module,exports){
+},{"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Robot = exports.Head = exports.Hardware = exports.Ed = exports.Base = undefined;
+exports.Robot = exports.Head = exports.Hardware = exports.Ed = exports.Base = exports.ActionServer = undefined;
+
+var _actionServer = require('./action-server');
+
+var _actionServer2 = _interopRequireDefault(_actionServer);
 
 var _base = require('./base');
 
@@ -1231,13 +1242,14 @@ var _robot2 = _interopRequireDefault(_robot);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+exports.ActionServer = _actionServer2.default;
 exports.Base = _base2.default;
 exports.Ed = _ed2.default;
 exports.Hardware = _hardware2.default;
 exports.Head = _head2.default;
 exports.Robot = _robot2.default;
 
-},{"./base":2,"./ed":3,"./hardware":5,"./head":6,"./robot":8}],8:[function(require,module,exports){
+},{"./action-server":1,"./base":2,"./ed":3,"./hardware":5,"./head":6,"./robot":8}],8:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1396,7 +1408,7 @@ exports.default = Robot;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./action-server":1,"./base":2,"./ed":3,"./hardware":5,"./head":6,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"os":103}],9:[function(require,module,exports){
+},{"./action-server":1,"./base":2,"./ed":3,"./hardware":5,"./head":6,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"os":109}],9:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1431,17 +1443,19 @@ module.exports = { "default": require("core-js/library/fn/symbol"), __esModule: 
 },{"core-js/library/fn/symbol":37}],21:[function(require,module,exports){
 "use strict";
 
+exports.__esModule = true;
+
 exports.default = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
-
-exports.__esModule = true;
 },{}],22:[function(require,module,exports){
 "use strict";
 
-var _defineProperty = require("babel-runtime/core-js/object/define-property");
+exports.__esModule = true;
+
+var _defineProperty = require("../core-js/object/define-property");
 
 var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -1464,21 +1478,31 @@ exports.default = (function () {
     return Constructor;
   };
 })();
-
-exports.__esModule = true;
-},{"babel-runtime/core-js/object/define-property":16}],23:[function(require,module,exports){
+},{"../core-js/object/define-property":16}],23:[function(require,module,exports){
 "use strict";
 
-var _Object$create = require("babel-runtime/core-js/object/create")["default"];
+exports.__esModule = true;
 
-var _Object$setPrototypeOf = require("babel-runtime/core-js/object/set-prototype-of")["default"];
+var _setPrototypeOf = require("../core-js/object/set-prototype-of");
 
-exports["default"] = function (subClass, superClass) {
+var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+
+var _create = require("../core-js/object/create");
+
+var _create2 = _interopRequireDefault(_create);
+
+var _typeof2 = require("../helpers/typeof");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
   }
 
-  subClass.prototype = _Object$create(superClass && superClass.prototype, {
+  subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
     constructor: {
       value: subClass,
       enumerable: false,
@@ -1486,14 +1510,14 @@ exports["default"] = function (subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _Object$setPrototypeOf ? _Object$setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
-
-exports.__esModule = true;
-},{"babel-runtime/core-js/object/create":15,"babel-runtime/core-js/object/set-prototype-of":19}],24:[function(require,module,exports){
+},{"../core-js/object/create":15,"../core-js/object/set-prototype-of":19,"../helpers/typeof":26}],24:[function(require,module,exports){
 "use strict";
 
-var _typeof2 = require("babel-runtime/helpers/typeof");
+exports.__esModule = true;
+
+var _typeof2 = require("../helpers/typeof");
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -1506,12 +1530,12 @@ exports.default = function (self, call) {
 
   return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
 };
-
-exports.__esModule = true;
-},{"babel-runtime/helpers/typeof":26}],25:[function(require,module,exports){
+},{"../helpers/typeof":26}],25:[function(require,module,exports){
 "use strict";
 
-var _from = require("babel-runtime/core-js/array/from");
+exports.__esModule = true;
+
+var _from = require("../core-js/array/from");
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -1519,26 +1543,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (arr) {
   if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
 
     return arr2;
   } else {
     return (0, _from2.default)(arr);
   }
 };
-
-exports.__esModule = true;
-},{"babel-runtime/core-js/array/from":10}],26:[function(require,module,exports){
+},{"../core-js/array/from":10}],26:[function(require,module,exports){
 "use strict";
 
-var _Symbol = require("babel-runtime/core-js/symbol")["default"];
-
-exports["default"] = function (obj) {
-  return obj && obj.constructor === _Symbol ? "symbol" : typeof obj;
-};
-
 exports.__esModule = true;
-},{"babel-runtime/core-js/symbol":20}],27:[function(require,module,exports){
+
+var _symbol = require("../core-js/symbol");
+
+var _symbol2 = _interopRequireDefault(_symbol);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { return obj && typeof _Symbol !== "undefined" && obj.constructor === _Symbol ? "symbol" : typeof obj; }
+
+exports.default = function (obj) {
+  return obj && typeof _symbol2.default !== "undefined" && obj.constructor === _symbol2.default ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+};
+},{"../core-js/symbol":20}],27:[function(require,module,exports){
 require('../../modules/es6.string.iterator');
 require('../../modules/es6.array.from');
 module.exports = require('../../modules/$.core').Array.from;
@@ -2762,179 +2792,6 @@ require('./es6.array.iterator');
 var Iterators = require('./$.iterators');
 Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
 },{"./$.iterators":67,"./es6.array.iterator":91}],102:[function(require,module,exports){
-var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-;(function (exports) {
-	'use strict';
-
-  var Arr = (typeof Uint8Array !== 'undefined')
-    ? Uint8Array
-    : Array
-
-	var PLUS   = '+'.charCodeAt(0)
-	var SLASH  = '/'.charCodeAt(0)
-	var NUMBER = '0'.charCodeAt(0)
-	var LOWER  = 'a'.charCodeAt(0)
-	var UPPER  = 'A'.charCodeAt(0)
-	var PLUS_URL_SAFE = '-'.charCodeAt(0)
-	var SLASH_URL_SAFE = '_'.charCodeAt(0)
-
-	function decode (elt) {
-		var code = elt.charCodeAt(0)
-		if (code === PLUS ||
-		    code === PLUS_URL_SAFE)
-			return 62 // '+'
-		if (code === SLASH ||
-		    code === SLASH_URL_SAFE)
-			return 63 // '/'
-		if (code < NUMBER)
-			return -1 //no match
-		if (code < NUMBER + 10)
-			return code - NUMBER + 26 + 26
-		if (code < UPPER + 26)
-			return code - UPPER
-		if (code < LOWER + 26)
-			return code - LOWER + 26
-	}
-
-	function b64ToByteArray (b64) {
-		var i, j, l, tmp, placeHolders, arr
-
-		if (b64.length % 4 > 0) {
-			throw new Error('Invalid string. Length must be a multiple of 4')
-		}
-
-		// the number of equal signs (place holders)
-		// if there are two placeholders, than the two characters before it
-		// represent one byte
-		// if there is only one, then the three characters before it represent 2 bytes
-		// this is just a cheap hack to not do indexOf twice
-		var len = b64.length
-		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
-
-		// base64 is 4/3 + up to two characters of the original data
-		arr = new Arr(b64.length * 3 / 4 - placeHolders)
-
-		// if there are placeholders, only get up to the last complete 4 chars
-		l = placeHolders > 0 ? b64.length - 4 : b64.length
-
-		var L = 0
-
-		function push (v) {
-			arr[L++] = v
-		}
-
-		for (i = 0, j = 0; i < l; i += 4, j += 3) {
-			tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
-			push((tmp & 0xFF0000) >> 16)
-			push((tmp & 0xFF00) >> 8)
-			push(tmp & 0xFF)
-		}
-
-		if (placeHolders === 2) {
-			tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
-			push(tmp & 0xFF)
-		} else if (placeHolders === 1) {
-			tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
-			push((tmp >> 8) & 0xFF)
-			push(tmp & 0xFF)
-		}
-
-		return arr
-	}
-
-	function uint8ToBase64 (uint8) {
-		var i,
-			extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
-			output = "",
-			temp, length
-
-		function encode (num) {
-			return lookup.charAt(num)
-		}
-
-		function tripletToBase64 (num) {
-			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
-		}
-
-		// go through the array every three bytes, we'll deal with trailing stuff later
-		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
-			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
-			output += tripletToBase64(temp)
-		}
-
-		// pad the end with zeros, but make sure to not forget the extra bytes
-		switch (extraBytes) {
-			case 1:
-				temp = uint8[uint8.length - 1]
-				output += encode(temp >> 2)
-				output += encode((temp << 4) & 0x3F)
-				output += '=='
-				break
-			case 2:
-				temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
-				output += encode(temp >> 10)
-				output += encode((temp >> 4) & 0x3F)
-				output += encode((temp << 2) & 0x3F)
-				output += '='
-				break
-		}
-
-		return output
-	}
-
-	exports.toByteArray = b64ToByteArray
-	exports.fromByteArray = uint8ToBase64
-}(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
-
-},{}],103:[function(require,module,exports){
-exports.endianness = function () { return 'LE' };
-
-exports.hostname = function () {
-    if (typeof location !== 'undefined') {
-        return location.hostname
-    }
-    else return '';
-};
-
-exports.loadavg = function () { return [] };
-
-exports.uptime = function () { return 0 };
-
-exports.freemem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.totalmem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.cpus = function () { return [] };
-
-exports.type = function () { return 'Browser' };
-
-exports.release = function () {
-    if (typeof navigator !== 'undefined') {
-        return navigator.appVersion;
-    }
-    return '';
-};
-
-exports.networkInterfaces
-= exports.getNetworkInterfaces
-= function () { return {} };
-
-exports.arch = function () { return 'javascript' };
-
-exports.platform = function () { return 'browser' };
-
-exports.tmpdir = exports.tmpDir = function () {
-    return '/tmp';
-};
-
-exports.EOL = '\n';
-
-},{}],104:[function(require,module,exports){
 var getNative = require('../internal/getNative');
 
 /* Native method references for those with the same name as other `lodash` methods. */
@@ -2960,7 +2817,7 @@ var now = nativeNow || function() {
 
 module.exports = now;
 
-},{"../internal/getNative":106}],105:[function(require,module,exports){
+},{"../internal/getNative":104}],103:[function(require,module,exports){
 var isObject = require('../lang/isObject'),
     now = require('../date/now');
 
@@ -3143,7 +3000,7 @@ function debounce(func, wait, options) {
 
 module.exports = debounce;
 
-},{"../date/now":104,"../lang/isObject":110}],106:[function(require,module,exports){
+},{"../date/now":102,"../lang/isObject":108}],104:[function(require,module,exports){
 var isNative = require('../lang/isNative');
 
 /**
@@ -3161,7 +3018,7 @@ function getNative(object, key) {
 
 module.exports = getNative;
 
-},{"../lang/isNative":109}],107:[function(require,module,exports){
+},{"../lang/isNative":107}],105:[function(require,module,exports){
 /**
  * Checks if `value` is object-like.
  *
@@ -3175,7 +3032,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],108:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 var isObject = require('./isObject');
 
 /** `Object#toString` result references. */
@@ -3215,7 +3072,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./isObject":110}],109:[function(require,module,exports){
+},{"./isObject":108}],107:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isObjectLike = require('../internal/isObjectLike');
 
@@ -3265,7 +3122,7 @@ function isNative(value) {
 
 module.exports = isNative;
 
-},{"../internal/isObjectLike":107,"./isFunction":108}],110:[function(require,module,exports){
+},{"../internal/isObjectLike":105,"./isFunction":106}],108:[function(require,module,exports){
 /**
  * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
  * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
@@ -3294,6 +3151,53 @@ function isObject(value) {
 }
 
 module.exports = isObject;
+
+},{}],109:[function(require,module,exports){
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
 
 },{}]},{},[7])(7)
 });
