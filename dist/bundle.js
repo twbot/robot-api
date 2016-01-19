@@ -36,7 +36,7 @@ var _roslib = (typeof window !== "undefined" ? window['ROSLIB'] : typeof global 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ActionServer = (function (_EventEmitter) {
+var ActionServer = function (_EventEmitter) {
   (0, _inherits3.default)(ActionServer, _EventEmitter);
 
   function ActionServer(robot) {
@@ -85,7 +85,7 @@ var ActionServer = (function (_EventEmitter) {
     }
   }]);
   return ActionServer;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 exports.default = ActionServer;
 
@@ -125,7 +125,7 @@ var _roslib = (typeof window !== "undefined" ? window['ROSLIB'] : typeof global 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Base = (function (_EventEmitter) {
+var Base = function (_EventEmitter) {
   (0, _inherits3.default)(Base, _EventEmitter);
 
   function Base(robot) {
@@ -223,7 +223,7 @@ var Base = (function (_EventEmitter) {
     }
   }]);
   return Base;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 exports.default = Base;
 
@@ -275,7 +275,7 @@ var _roslib = (typeof window !== "undefined" ? window['ROSLIB'] : typeof global 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Ed = (function (_EventEmitter) {
+var Ed = function (_EventEmitter) {
   (0, _inherits3.default)(Ed, _EventEmitter);
 
   function Ed(robot) {
@@ -516,7 +516,7 @@ var Ed = (function (_EventEmitter) {
     }
   }]);
   return Ed;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 function parseEdPosition(pose) {
   return {
@@ -723,9 +723,13 @@ var _eventemitter = require('eventemitter2');
 
 var _roslib = (typeof window !== "undefined" ? window['ROSLIB'] : typeof global !== "undefined" ? global['ROSLIB'] : null);
 
-var _debounce = require('lodash/function/debounce.js');
+var _debounce = require('lodash/debounce');
 
 var _debounce2 = _interopRequireDefault(_debounce);
+
+var _hardwareProperties = require('./hardware-properties');
+
+var _hardwareProperties2 = _interopRequireDefault(_hardwareProperties);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -739,10 +743,9 @@ var levels = {
   ERROR: 4
 };
 
-// Robot specific Hardware constants that should come from the parameter server
-var properties = require('./hardware-properties');
-
 // define how the actions map to hardware commands
+
+// Robot specific Hardware constants that should come from the parameter server
 var commands = {
   home: 21,
   start: 22,
@@ -791,7 +794,7 @@ var EBUTTONS_TIMEOUT = 2000;
  * @param {Robot} robot A valid robot object
  */
 
-var Hardware = (function (_EventEmitter) {
+var Hardware = function (_EventEmitter) {
   (0, _inherits3.default)(Hardware, _EventEmitter);
 
   function Hardware(robot) {
@@ -960,7 +963,7 @@ var Hardware = (function (_EventEmitter) {
     }
   }]);
   return Hardware;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 /**
  * Private functions
@@ -1020,7 +1023,7 @@ function diagnosticMsgToStatus(msg) {
 
 // return all possible actions for a hardware part
 function getActions(name, part) {
-  var props = properties[name];
+  var props = _hardwareProperties2.default[name];
   if (!props) {
     return null;
   }
@@ -1063,7 +1066,7 @@ exports.default = Hardware;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./hardware-properties":4,"babel-runtime/core-js/get-iterator":11,"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/core-js/object/keys":18,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"lodash/function/debounce.js":103}],6:[function(require,module,exports){
+},{"./hardware-properties":4,"babel-runtime/core-js/get-iterator":11,"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/core-js/object/keys":18,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"lodash/debounce":102}],6:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1099,7 +1102,7 @@ var _base64Js = (typeof window !== "undefined" ? window['base64js'] : typeof glo
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Head = (function (_EventEmitter) {
+var Head = function (_EventEmitter) {
   (0, _inherits3.default)(Head, _EventEmitter);
 
   function Head(robot) {
@@ -1202,7 +1205,7 @@ var Head = (function (_EventEmitter) {
     }
   }]);
   return Head;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 exports.default = Head;
 
@@ -1314,7 +1317,7 @@ var RECONNECT_TIMEOUT = 5000;
 
 // Robot constructor
 
-var Robot = (function (_EventEmitter) {
+var Robot = function (_EventEmitter) {
   (0, _inherits3.default)(Robot, _EventEmitter);
 
   function Robot() {
@@ -1400,7 +1403,7 @@ var Robot = (function (_EventEmitter) {
     }
   }]);
   return Robot;
-})(_eventemitter.EventEmitter2);
+}(_eventemitter.EventEmitter2);
 
 // module.exports = Robot;
 
@@ -1408,7 +1411,7 @@ exports.default = Robot;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./action-server":1,"./base":2,"./ed":3,"./hardware":5,"./head":6,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"os":109}],9:[function(require,module,exports){
+},{"./action-server":1,"./base":2,"./ed":3,"./hardware":5,"./head":6,"babel-runtime/core-js/object/get-prototype-of":17,"babel-runtime/helpers/classCallCheck":21,"babel-runtime/helpers/createClass":22,"babel-runtime/helpers/inherits":23,"babel-runtime/helpers/possibleConstructorReturn":24,"eventemitter2":9,"os":107}],9:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -2792,49 +2795,25 @@ require('./es6.array.iterator');
 var Iterators = require('./$.iterators');
 Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
 },{"./$.iterators":67,"./es6.array.iterator":91}],102:[function(require,module,exports){
-var getNative = require('../internal/getNative');
-
-/* Native method references for those with the same name as other `lodash` methods. */
-var nativeNow = getNative(Date, 'now');
-
-/**
- * Gets the number of milliseconds that have elapsed since the Unix epoch
- * (1 January 1970 00:00:00 UTC).
- *
- * @static
- * @memberOf _
- * @category Date
- * @example
- *
- * _.defer(function(stamp) {
- *   console.log(_.now() - stamp);
- * }, _.now());
- * // => logs the number of milliseconds it took for the deferred function to be invoked
- */
-var now = nativeNow || function() {
-  return new Date().getTime();
-};
-
-module.exports = now;
-
-},{"../internal/getNative":104}],103:[function(require,module,exports){
-var isObject = require('../lang/isObject'),
-    now = require('../date/now');
+var isObject = require('./isObject'),
+    now = require('./now'),
+    toNumber = require('./toNumber');
 
 /** Used as the `TypeError` message for "Functions" methods. */
 var FUNC_ERROR_TEXT = 'Expected a function';
 
-/* Native method references for those with the same name as other `lodash` methods. */
+/* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
 
 /**
  * Creates a debounced function that delays invoking `func` until after `wait`
  * milliseconds have elapsed since the last time the debounced function was
  * invoked. The debounced function comes with a `cancel` method to cancel
- * delayed invocations. Provide an options object to indicate that `func`
- * should be invoked on the leading and/or trailing edge of the `wait` timeout.
- * Subsequent calls to the debounced function return the result of the last
- * `func` invocation.
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide an options object to indicate whether `func` should be invoked on
+ * the leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent calls
+ * to the debounced function return the result of the last `func` invocation.
  *
  * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
  * on the trailing edge of the timeout only if the the debounced function is
@@ -2861,34 +2840,19 @@ var nativeMax = Math.max;
  * // avoid costly calculations while the window size is in flux
  * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
  *
- * // invoke `sendMail` when the click event is fired, debouncing subsequent calls
- * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
+ * // invoke `sendMail` when clicked, debouncing subsequent calls
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
  *   'leading': true,
  *   'trailing': false
  * }));
  *
  * // ensure `batchLog` is invoked once after 1 second of debounced calls
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
  * var source = new EventSource('/stream');
- * jQuery(source).on('message', _.debounce(batchLog, 250, {
- *   'maxWait': 1000
- * }));
+ * jQuery(source).on('message', debounced);
  *
- * // cancel a debounced call
- * var todoChanges = _.debounce(batchLog, 1000);
- * Object.observe(models.todo, todoChanges);
- *
- * Object.observe(models, function(changes) {
- *   if (_.find(changes, { 'user': 'todo', 'type': 'delete'})) {
- *     todoChanges.cancel();
- *   }
- * }, ['delete']);
- *
- * // ...at some point `models.todo` is changed
- * models.todo.completed = true;
- *
- * // ...before 1 second has passed `models.todo` is deleted
- * // which cancels the debounced `todoChanges` call
- * delete models.todo;
+ * // cancel a trailing debounced invocation
+ * jQuery(window).on('popstate', debounced.cancel);
  */
 function debounce(func, wait, options) {
   var args,
@@ -2899,19 +2863,17 @@ function debounce(func, wait, options) {
       timeoutId,
       trailingCall,
       lastCalled = 0,
+      leading = false,
       maxWait = false,
       trailing = true;
 
   if (typeof func != 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  wait = wait < 0 ? 0 : (+wait || 0);
-  if (options === true) {
-    var leading = true;
-    trailing = false;
-  } else if (isObject(options)) {
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
     leading = !!options.leading;
-    maxWait = 'maxWait' in options && nativeMax(+options.maxWait || 0, wait);
+    maxWait = 'maxWait' in options && nativeMax(toNumber(options.maxWait) || 0, wait);
     trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
@@ -2923,7 +2885,7 @@ function debounce(func, wait, options) {
       clearTimeout(maxTimeoutId);
     }
     lastCalled = 0;
-    maxTimeoutId = timeoutId = trailingCall = undefined;
+    args = maxTimeoutId = thisArg = timeoutId = trailingCall = undefined;
   }
 
   function complete(isCalled, id) {
@@ -2947,6 +2909,14 @@ function debounce(func, wait, options) {
     } else {
       timeoutId = setTimeout(delayed, remaining);
     }
+  }
+
+  function flush() {
+    if ((timeoutId && trailingCall) || (maxTimeoutId && trailing)) {
+      result = func.apply(thisArg, args);
+    }
+    cancel();
+    return result;
   }
 
   function maxDelayed() {
@@ -2995,57 +2965,28 @@ function debounce(func, wait, options) {
     return result;
   }
   debounced.cancel = cancel;
+  debounced.flush = flush;
   return debounced;
 }
 
 module.exports = debounce;
 
-},{"../date/now":102,"../lang/isObject":108}],104:[function(require,module,exports){
-var isNative = require('../lang/isNative');
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = object == null ? undefined : object[key];
-  return isNative(value) ? value : undefined;
-}
-
-module.exports = getNative;
-
-},{"../lang/isNative":107}],105:[function(require,module,exports){
-/**
- * Checks if `value` is object-like.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- */
-function isObjectLike(value) {
-  return !!value && typeof value == 'object';
-}
-
-module.exports = isObjectLike;
-
-},{}],106:[function(require,module,exports){
+},{"./isObject":104,"./now":105,"./toNumber":106}],103:[function(require,module,exports){
+(function (global){
 var isObject = require('./isObject');
 
 /** `Object#toString` result references. */
-var funcTag = '[object Function]';
+var funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]';
 
-/** Used for native method references. */
-var objectProto = Object.prototype;
+/** Used for built-in method references. */
+var objectProto = global.Object.prototype;
 
 /**
  * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
  * of values.
  */
-var objToString = objectProto.toString;
+var objectToString = objectProto.toString;
 
 /**
  * Checks if `value` is classified as a `Function` object.
@@ -3065,64 +3006,17 @@ var objToString = objectProto.toString;
  */
 function isFunction(value) {
   // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in older versions of Chrome and Safari which return 'function' for regexes
-  // and Safari 8 which returns 'object' for typed array constructors.
-  return isObject(value) && objToString.call(value) == funcTag;
+  // in Safari 8 which returns 'object' for typed array constructors, and
+  // PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
 }
 
 module.exports = isFunction;
 
-},{"./isObject":108}],107:[function(require,module,exports){
-var isFunction = require('./isFunction'),
-    isObjectLike = require('../internal/isObjectLike');
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-/** Used to detect host constructors (Safari > 5). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/** Used for native method references. */
-var objectProto = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var fnToString = Function.prototype.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/**
- * Checks if `value` is a native function.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
- * @example
- *
- * _.isNative(Array.prototype.push);
- * // => true
- *
- * _.isNative(_);
- * // => false
- */
-function isNative(value) {
-  if (value == null) {
-    return false;
-  }
-  if (isFunction(value)) {
-    return reIsNative.test(fnToString.call(value));
-  }
-  return isObjectLike(value) && reIsHostCtor.test(value);
-}
-
-module.exports = isNative;
-
-},{"../internal/isObjectLike":105,"./isFunction":106}],108:[function(require,module,exports){
+},{"./isObject":104}],104:[function(require,module,exports){
 /**
  * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
  * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
@@ -3140,7 +3034,10 @@ module.exports = isNative;
  * _.isObject([1, 2, 3]);
  * // => true
  *
- * _.isObject(1);
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
  * // => false
  */
 function isObject(value) {
@@ -3152,7 +3049,89 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],109:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @type Function
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => logs the number of milliseconds it took for the deferred function to be invoked
+ */
+var now = Date.now;
+
+module.exports = now;
+
+},{}],106:[function(require,module,exports){
+var isFunction = require('./isFunction'),
+    isObject = require('./isObject');
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `global`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3);
+ * // => 3
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3');
+ * // => 3
+ */
+function toNumber(value) {
+  if (isObject(value)) {
+    var other = isFunction(value.valueOf) ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = toNumber;
+
+},{"./isFunction":103,"./isObject":104}],107:[function(require,module,exports){
 exports.endianness = function () { return 'LE' };
 
 exports.hostname = function () {
