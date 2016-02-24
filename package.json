@@ -122,7 +122,7 @@
   "dependencies": {
     "babel-runtime": "^6.3.13",
     "base64-js": "^1.0.1",
-    "eventemitter2": "^0.4.14",
+    "eventemitter2": "^1.0.0",
     "lodash": "^4.0.0",
     "roslib": "RobotWebTools/roslibjs#f406f6a570a27747dc6a8fc5a3b68dd4a974f65d"
   },
