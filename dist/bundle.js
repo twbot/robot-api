@@ -1524,6 +1524,7 @@ var Robot = function (_EventEmitter) {
   (0, _inherits3.default)(Robot, _EventEmitter);
 
   function Robot() {
+    var modules = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     (0, _classCallCheck3.default)(this, Robot);
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (Robot.__proto__ || (0, _getPrototypeOf2.default)(Robot)).call(this));
@@ -1550,11 +1551,22 @@ var Robot = function (_EventEmitter) {
       }
     });
 
-    _this.ed = new _edRobocup2.default(_this);
-    _this.hardware = new _hardware2.default(_this);
-    _this.head = new _head2.default(_this);
-    _this.base = new _base2.default(_this);
-    _this.actionServer = new _actionServer2.default(_this);
+    console.log('Creating a robot with the following settings:', modules);
+    if ('ed' in modules) {
+      _this.ed = new _edRobocup2.default(_this);
+    }
+    if ('hardware' in modules) {
+      _this.hardware = new _hardware2.default(_this);
+    }
+    if ('head' in modules) {
+      _this.head = new _head2.default(_this);
+    }
+    if ('base' in modules) {
+      _this.base = new _base2.default(_this);
+    }
+    if ('actionServer' in modules) {
+      _this.actionServer = new _actionServer2.default(_this);
+    }
     return _this;
   }
 
