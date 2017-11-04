@@ -1,12 +1,12 @@
 /* eslint no-unused-expressions: 0 */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
-chai.use(sinonChai);
-const should = chai.should();
-
 import {stub, useFakeTimers} from 'sinon';
 
 import {Robot} from '../lib';
+
+chai.use(sinonChai);
+const should = chai.should();
 
 describe('Robot', () => {
   const exampleUrl = 'ws://example.com:9090';
@@ -38,7 +38,7 @@ describe('Robot', () => {
       connect.should.have.not.been.called;
       robot.connect();
       connect.should.have.been.calledOnce;
-      connect.should.have.been.calledWithMatch(/ws:\/\/[a-zA-Z0-9\-]+:9090/);
+      connect.should.have.been.calledWithMatch(/ws:\/\/[a-zA-Z0-9-]+:9090/);
     });
 
     it('should remember the previous url', () => {
