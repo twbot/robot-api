@@ -1,15 +1,14 @@
 sudo: false
+dist: trusty
 language: node_js
 node_js:
-  - '0.12'
   - '4'
+  - '6'
   - 'stable'
 
 # install node-canvas dependencies
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
     - libcairo2-dev
